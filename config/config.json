@@ -1,0 +1,20 @@
+{
+    "winston_err_file": "err.log",
+    "winston_daily_file": "app-%DATE%.log",
+    "winston_save_days": "7d",
+    "morgan_format": ":method :url :status :response-time ms",
+    "console_file": "console.log",
+    "response_code":
+    {
+        "success":
+        {
+            "status": "200",
+            "message": "success"
+        },
+        "fail":
+        {
+            "status": "500",
+            "message": ""
+        }
+    }
+}

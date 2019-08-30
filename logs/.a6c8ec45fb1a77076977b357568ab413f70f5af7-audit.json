@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "/home/ctsuser/sheldon/ota_server/logs/.a6c8ec45fb1a77076977b357568ab413f70f5af7-audit.json",
+    "files": [
+        {
+            "date": 1565750309592,
+            "name": "/home/ctsuser/sheldon/ota_server/logs/app-2019-08-14.log",
+            "hash": "449a6575de1658b146256ec1e1bd2d65"
+        }
+    ]
+}

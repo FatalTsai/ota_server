@@ -1,0 +1,45 @@
+{"time":"2019-08-14 10:39:12","pid":8787,"level":"info","message":" get req: /ota"}
+{"time":"2019-08-14 10:39:12","pid":8787,"level":"info","message":"Send: /home/ctsuser/sheldon/ota_server/ota_files/20190723.zip"}
+{"time":"2019-08-14 10:39:12","pid":8787,"level":"info","message":"POST /ota 200 15.729 ms\n"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":" get req: /ota"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files/"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R2.0.1.zip"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R3.0.0.zip"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R3.1.0.zip"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//update_version.sh"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//version.json"}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":{"path":"/home/ctsuser/sheldon/ota_server/ota_files/","name":"ota_files","type":"folder","children":[{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R2.0.1.zip","name":"R2.0.1.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R3.0.0.zip","name":"R3.0.0.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R3.1.0.zip","name":"R3.1.0.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//update_version.sh","name":"update_version.sh","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//version.json","name":"version.json","type":"file"}]}}
+{"time":"2019-08-14 10:40:04","pid":8787,"level":"info","message":"GET /ota 200 2.333 ms\n"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":" get req: /ota"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files/"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R2.0.1.zip"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R3.0.0.zip"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R3.1.0.zip"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//update_version.sh"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//version.json"}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":{"path":"/home/ctsuser/sheldon/ota_server/ota_files/","name":"ota_files","type":"folder","children":[{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R2.0.1.zip","name":"R2.0.1.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R3.0.0.zip","name":"R3.0.0.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R3.1.0.zip","name":"R3.1.0.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//update_version.sh","name":"update_version.sh","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//version.json","name":"version.json","type":"file"}]}}
+{"time":"2019-08-14 10:40:31","pid":8954,"level":"info","message":"GET /ota 200 8.406 ms\n"}
+{"time":"2019-08-14 10:41:08","pid":8954,"level":"info","message":" get req: /ota"}
+{"time":"2019-08-14 10:41:08","pid":8954,"level":"info","message":"Send: /home/ctsuser/sheldon/ota_server/ota_files/R2.0.1.zip"}
+{"time":"2019-08-14 10:41:17","pid":8954,"level":"info","message":"POST /ota 200 12.970 ms\n"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":" get req: /ota"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files/"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R2.0.1.zip"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R3.0.0.zip"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//R3.1.0.zip"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//update_version.sh"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"/home/ctsuser/sheldon/ota_server/ota_files//version.json"}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":{"path":"/home/ctsuser/sheldon/ota_server/ota_files/","name":"ota_files","type":"folder","children":[{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R2.0.1.zip","name":"R2.0.1.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R3.0.0.zip","name":"R3.0.0.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//R3.1.0.zip","name":"R3.1.0.zip","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//update_version.sh","name":"update_version.sh","type":"file"},{"path":"/home/ctsuser/sheldon/ota_server/ota_files//version.json","name":"version.json","type":"file"}]}}
+{"time":"2019-08-14 10:43:06","pid":9003,"level":"info","message":"GET /ota 200 8.595 ms\n"}
+{"time":"2019-08-14 10:45:32","pid":9032,"level":"info","message":" request from : ::ffff:192.168.1.166"}
+{"time":"2019-08-14 10:45:32","pid":9032,"level":"info","message":"GET /ota 200 6.011 ms\n"}
+{"time":"2019-08-14 10:47:45","pid":9077,"level":"info","message":" request from ::ffff:192.168.1.166, method[ ]"}
+{"time":"2019-08-14 10:47:45","pid":9077,"level":"info","message":"GET /ota 200 5.831 ms\n"}
+{"time":"2019-08-14 10:48:18","pid":9092,"level":"info","message":" request from ::ffff:192.168.1.166, method[/ota]"}
+{"time":"2019-08-14 10:48:18","pid":9092,"level":"info","message":"GET /ota 200 6.037 ms\n"}
+{"time":"2019-08-14 10:49:13","pid":9092,"level":"info","message":" request from ::ffff:192.168.1.166, method[/ota]"}
+{"time":"2019-08-14 10:49:13","pid":9092,"level":"info","message":"Send: /home/ctsuser/sheldon/ota_server/ota_files/R2.0.1.zip"}
+{"time":"2019-08-14 10:49:22","pid":9092,"level":"info","message":"POST /ota 200 13.120 ms\n"}
+{"time":"2019-08-14 10:50:21","pid":9112,"level":"info","message":" request from ::ffff:192.168.1.166, method[POST]"}
+{"time":"2019-08-14 10:50:21","pid":9112,"level":"info","message":"Send: /home/ctsuser/sheldon/ota_server/ota_files/R2.0.1.zip"}
+{"time":"2019-08-14 10:50:25","pid":9112,"level":"info","message":"POST /ota 200 18.839 ms\n"}
