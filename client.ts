@@ -1,21 +1,26 @@
 //ref :https://www.jianshu.com/p/934d3e8d371e
-
-const fetch = require('node-fetch');
+const process = require('process') //引入process模組 使用函數process.argv取得命令列參數
+const fetch = require('node-fetch')
 var fs = require('fs'); // 引入fs模块
-var path =require('path')
+const path =require('path')
 //const filepath='R4.0.0.zip'
 const filepath = 'Native.mp4'
-const folder = foldername()
-//const folder = './temp'
 
-//获取响应头信息
+
+
+
+const fileName = path.basename(filepath)
+const folder = filepath+'_tmp'
+
+
+
 function getResHeaders(url) {
     return new Promise(function (resolve, reject) {
         fetch(url, {
-            method: "post", //请求方式
+            method: "post", 
             body: JSON.stringify({file : filepath}),
-            // mode: 'cors',
-            headers: { //请求头
+           
+            headers: { 
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36",
                 "Cache-Control": "no-cache",
                 Connection: "keep-alive",
@@ -34,7 +39,7 @@ function getResHeaders(url) {
         }).catch(reject);
     });
 }
-//下载块
+
 async function  downloadBlock(url, o) { // var o is etag and Range,
     let option = {
         //'Content-Type': 'application/octet-stream',
@@ -72,11 +77,12 @@ async function  downloadBlock(url, o) { // var o is etag and Range,
 let blist = []
 function combine(filenumber)
 {
+   
     
-    for(let i =0 ;i<=Number(filenumber); i++)
+    for(let i =0 ;i<=Number(filenumber);i++)
     {   
-        console.log('combine : ota '+i)
-        var buff = fs.readFileSync(path.join(__dirname,folder+'/ota'+i))
+        console.log('combine : '+fileName+i)
+        var buff = fs.readFileSync(path.join(__dirname,folder+'/'+fileName+i))
         blist.push(buff)        
     }
     fs.writeFile(filepath,Buffer.concat(blist),function(err){
@@ -99,85 +105,111 @@ function foldername()
 
 }
 
+
+async function downloadfile(url,contextLength,blockSize,unsavedfile)
+{
+    //let fileName = url.split("/").reverse()[0].split("?")[0];
+
+    //let etag = h.etag;
+    //暫時先不用 etag 
+    
+    let blockLen = Math.ceil(contextLength / blockSize);
+    console.log('blocklen = '+blockLen)
+
+    let downloadlist = [];
+    for(let i=0;i<blockLen;i++)
+        downloadlist.push(i)
+
+
+    downloadlist = downloadlist.filter(x => !unsavedfile.includes(x) );
+
+
+    for(let i=0;i<unsavedfile.length;i++)
+    {
+        let strat = unsavedfile[i] * blockSize;
+        let end = (unsavedfile[i] + 1) * blockSize - 1;
+        end = end > contextLength ? contextLength : end;
+        console.log("download:",strat, end);
+        let buffer = await downloadBlock(url, {
+            //etag: etag,
+            //'Content-Type': contentType,
+            "Range": "bytes=" + strat + "-" + end
+        });
+
+       
+            
+            
+        await fs.writeFile(folder+'/'+fileName+Number(unsavedfile[i]),buffer,async function(err)
+        {
+            if(err)
+                console.log('writeFaild '+unsavedfile[i])
+
+            await fs.writeFileSync( folder+'/'+fileName+'_console','Saved '+Number(unsavedfile[i])+'\n',{flag : 'a'})
+            downloadlist.push(unsavedfile[i])
+            console.log('Saved '+Number(unsavedfile[i]))
+            
+            if(downloadlist.length == blockLen)
+            {   
+                combine(blockLen-1)
+
+            }
+           
+
+        });
+
+    }
+    
+
+
+}
+
+
 (async function () {  
     // let url = "http://cdn.npm.taobao.org/dist/node/v10.14.2/node-v10.14.2-x64.msi";
     //let url = "https://www.python.org/ftp/python/3.7.2/python-3.7.2-amd64.exe";
     //let url ="https://www.jianshu.com/p/934d3e8d371e"
 
     let url = "http://localhost:1628/ota"
-
-    let fileName = url.split("/").reverse()[0].split("?")[0];
-    let fileBuffer = null;
-    //获取请求头信息
     let h = await getResHeaders(url);
     let contextLength = h["context-length"];
+    const blockSize =1024*1024*50
+    const blockLen = Math.ceil(contextLength / blockSize);
 
-    //console.log('contentlength = '+contentLength)
-    //分块大小
-    //let blockSize = 1024 * 1024 * 4;//b
-    let blockSize = 1024*1024*50
+    if(!fs.existsSync(folder))
+        fs.mkdirSync(folder)
+
+
+
+
+    let unsavedfile=[]
+    for(var i=0;i<blockLen;i++)
+    {
+        unsavedfile.push(i)
+    }
+    const argv = process.argv
     
-    fs.mkdirSync(folder)
+    if(argv[argv.length-1] == '-re')
+    {
+        let tmp =await fs.readFileSync(__dirname+'/'+folder+'/'+fileName+'_console','utf8')
+        let consolefile = tmp.split('Saved').join('').split('\n').map(function(item){
+            return parseInt(item,10)
+        })
+        //console.log(consolefile)
 
-    let contentRange = h['range']
-
-    console.log(h)
-
-
-    //判断是否支持分段*下载
+        unsavedfile = unsavedfile.filter(x => !consolefile.includes(x) );
+        console.log(unsavedfile)
+    }
     
-    if (h['accept-ragnes']='bytes') {
-        //获取文件大小
-        //let contentLength = Number(contentRange.split("/").reverse()[0]);
-        //判断是否后需要分块下载
-        let etag = h.etag;
-        let contentType = h["content-type"];
-        let blockLen = Math.ceil(contextLength / blockSize);
-        console.log('blocklen = '+blockLen)
-        let blist = [];foldername()
-        //计算分块foldername()
-        for (let i = 0, strat, end; i < blockLen; i++) {foldername()
-            strat = i * blockSize;foldername()
-            end = (i + 1) * blockSize - 1;foldername()
-            end = end > contextLength ? contextLength : end;
-            console.log("download:",strat, end);
-            let buffer = await downloadBlock(url, {
-                etag: etag,
-                //'Content-Type': contentType,
-                "Range": "bytes=" + strat + "-" + end
-            });
 
 
-            console.log(folder)
+    //判断是否支持/需要 斷點續傳
+    
+    if (h['accept-ragnes']='bytes' && contextLength > blockSize) {
 
-            
-            
-            fs.writeFile(folder+'/'+fileName+Number(i),buffer,function(err)
-            {
-                //if(err)throw err;
-                console.log('Saved '+Number(i))
-                if(i == blockLen-1)
-                {
-                    combine(i)
-                }
-            });
-               
-            blist.push(buffer);
+        downloadfile(url,contextLength,blockSize,unsavedfile)
 
-        }
-        fileBuffer = Buffer.concat(blist);
+
     }
-    if (!fileBuffer) {
-        //直接下载
-        fileBuffer = await downloadBlock(url, {});
-    }
-    if (fileBuffer) {
-        //保存文件
-        //combine(filenumber)
-        /*
-        fs.writeFile(fileName, fileBuffer, function (err) {
-            if (err) throw err;
-            console.log('Saved.');
-        });*/
-    }
+    
+   
 })();
