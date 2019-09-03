@@ -14,7 +14,7 @@ const folder = filepath+'_tmp'
 
 
 
-function getResHeaders(url) {
+function getResHeaders(url) { 
     return new Promise(function (resolve, reject) {
         fetch(url, {
             method: "post", 
@@ -153,8 +153,6 @@ async function downloadfile(url,contextLength,blockSize,unsavedfile)
                 combine(blockLen-1)
 
             }
-           
-
         });
 
     }
@@ -172,7 +170,7 @@ async function downloadfile(url,contextLength,blockSize,unsavedfile)
     let url = "http://localhost:1628/ota"
     let h = await getResHeaders(url);
     let contextLength = h["context-length"];
-    const blockSize =1024
+    const blockSize =1024*1024
     const blockLen = Math.ceil(contextLength / blockSize);
 
     if(!fs.existsSync(folder))
@@ -210,6 +208,15 @@ async function downloadfile(url,contextLength,blockSize,unsavedfile)
 
 
     }
-    
+    else
+    {
+        //直接下载
+        const fileBuffer = await downloadBlock(url, {});
+        fs.writeFile(filepath,fileBuffer,function(err){
+            if(err) throw err
+            console.log('directly download!!!')
+        })
+    }
+
    
 })();
