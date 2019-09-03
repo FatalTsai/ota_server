@@ -3,8 +3,8 @@ const process = require('process') //引入process模組 使用函數process.arg
 const fetch = require('node-fetch')
 var fs = require('fs'); // 引入fs模块
 const path =require('path')
-//const filepath='R4.0.0.zip'
-const filepath = 'Native.mp4'
+const filepath='R4.0.0.zip'
+//const filepath = 'Native.mp4'
 
 
 
@@ -172,7 +172,7 @@ async function downloadfile(url,contextLength,blockSize,unsavedfile)
     let url = "http://localhost:1628/ota"
     let h = await getResHeaders(url);
     let contextLength = h["context-length"];
-    const blockSize =1024*1024*50
+    const blockSize =1024
     const blockLen = Math.ceil(contextLength / blockSize);
 
     if(!fs.existsSync(folder))
