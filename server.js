@@ -72,8 +72,12 @@ router.route('/ota')
 
             
             console.log('start ='+range.Start+'     end ='+range.End)
-            fs.createReadStream(__dirname + '/ota_files/' + file,{start :range.Start,end :range.End}).pipe(res)
+            fs.createReadStream(__dirname + '/ota_files/' + file,range).pipe(res)
             //res.sendFile(path.join(__dirname + '/ota_files/' + file));
+            /*
+                這邊我把原本的sendFile改成適合讀取大型檔案串流
+                可以利用參數 range.start range.end 來控制讀取那一部份的檔案
+            */
         } else {
             res.json(Utility.request_failed("File not exits"));
         }
@@ -113,19 +117,19 @@ function readRangeHeader(range,totalLength) {
     var end = parseInt(array[2]);
    
     var result = {
-        Start: isNaN(start) ? 0 : start,
-        End: isNaN(end) ? (totalLength - 1) : end //如果request.header缺少start 或是 end（isNaN成立）  則將start ,end 設成檔案的頭跟尾
+        start: isNaN(start) ? 0 : start,
+        end: isNaN(end) ? (totalLength - 1) : end //如果request.header缺少start 或是 end（isNaN成立）  則將start ,end 設成檔案的頭跟尾
 
     };
    
     if (!isNaN(start) && isNaN(end)) {
-        result.Start = start;
-        result.End = totalLength - 1;
+        result.start = start;
+        result.end = totalLength - 1;
     }
 
     if (isNaN(start) && !isNaN(end)) {
-        result.Start = totalLength - end;
-        result.End = totalLength - 1;
+        result.start = totalLength - end;
+        result.end = totalLength - 1;
     }
     
     return result;
